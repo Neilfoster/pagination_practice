@@ -6,8 +6,8 @@ from pprint import pprint
 
 app = Flask(__name__)
 
-app.config["MONGO_DBNAME"] = 'milestoneproject3me'
-app.config["MONGO_URI"] = 'mongodb+srv://Neil:BrooklynWooD@myfirstcluster-lxpo1.mongodb.net/milestone_3retryWrites=true&w=majority'
+app.config["MONGO_DBNAME"] = 'milestone_3'
+app.config["MONGO_URI"] = 'mongodb+srv://Neil:BrooklynWooD@myfirstcluster-lxpo1.mongodb.net/milestone_3?retryWrites=true&w=majority'
 
 
 mongo = PyMongo(app)
@@ -25,6 +25,7 @@ def activities():
         output.append({'activity' : i['activity']})
         
     return jsonify({'result' : output, 'prev_url' : '', 'next_url' : ''})
+    
 
 if __name__ == "__main__":
     app.run(debug=True)
