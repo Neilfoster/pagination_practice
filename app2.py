@@ -1,19 +1,16 @@
 import os
-import logging
-from flask import Flask, request, jsonify
-from flask_pymongo import PyMongo, pymongo, MongoClient
+from flask import Flask, render_template, redirect, url_for, request, jsonify
+from flask_pymongo import PyMongo, pymongo
 from bson.objectid import ObjectId
-from pprint import pprint
 
 app = Flask(__name__)
 
 app.config["MONGO_DBNAME"] = 'milestone_3'
 app.config["MONGO_URI"] = 'mongodb+srv://Neil:BrooklynWooD@myfirstcluster-lxpo1.mongodb.net/milestone_3?retryWrites=true&w=majority'
 
-
 mongo = PyMongo(app)
 
-
+@app.route('/')
 @app.route('/activities', methods=['GET'])
 def activities():
     
@@ -24,9 +21,9 @@ def activities():
     output = []
     
     for i in activities:
-        output.append({'activity':i['activity']})
+        output.append({'activity' : i['activity']})
         
-    return jsonify({'result' : output, 'prev_url' : '', 'next_url' : ''})
+    return jsonify({'result': output, 'prev_url': '', 'next_url': ''})
 
 if __name__ == '__main__':
     app.run(host=os.environ.get('IP'),
